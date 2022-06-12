@@ -16,10 +16,28 @@ public class WriteExcel {
     }
 
     public File file(String filePath) {
-        File excelFile = new File(filePath);
         Workbook workbook = makeWorkbook();
+        return makeFile(filePath, workbook);
+    }
 
-        FileOutputStream outputStream = null;
+    private Workbook makeWorkbook() {
+        Workbook workbook = new XSSFWorkbook();
+        Sheet sheet = workbook.createSheet();
+        for (int i = 0; i < dataset.size(); i++) {
+            makeRows(dataset.get(i), sheet.createRow(i));
+        }
+        return workbook;
+    }
+
+    private void makeRows(List<String> row, Row sheetRow) {
+        for (int j = 0; j < row.size(); j++) {
+            sheetRow.createCell(j).setCellValue(row.get(j));
+        }
+    }
+
+    private File makeFile(String filePath, Workbook workbook) {
+        File excelFile = new File(filePath);
+        FileOutputStream outputStream;
         try {
             outputStream = new FileOutputStream(filePath);
         } catch (FileNotFoundException e) {
@@ -27,29 +45,10 @@ public class WriteExcel {
         }
         try {
             workbook.write(outputStream);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        try {
             workbook.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         return excelFile;
-    }
-
-    private Workbook makeWorkbook() {
-        Workbook workbook = new XSSFWorkbook();
-
-        Sheet sheet = workbook.createSheet();
-        List<String> row;
-        for (int i = 0; i < dataset.size(); i++) {
-            Row header = sheet.createRow(i);
-            row = dataset.get(i);
-            for (int j = 0; j < row.size(); j++) {
-                header.createCell(j).setCellValue(row.get(j));
-            }
-        }
-        return workbook;
     }
 }
