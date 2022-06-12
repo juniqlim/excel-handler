@@ -10,44 +10,30 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class WriteExcel {
     private final List<Fields> dataset;
+    private Workbook workbook;
 
     public WriteExcel(List<Fields> dataset) {
         this.dataset = dataset;
     }
 
-    public File excelFile(String filePath) {
-        Workbook workbook = makeWorkbook();
-        return makeFile(filePath, workbook);
-    }
-
-    public File excelFile(String filePath, CellStyle cellStyle) {
-        Workbook workbook = makeWorkbook(cellStyle);
-        return makeFile(filePath, workbook);
-    }
-
-    private Workbook makeWorkbook() {
+    public void makeWorkbook() {
         Workbook workbook = new XSSFWorkbook();
+        this.workbook = workbook;
         makeSheet(workbook);
-        return workbook;
     }
 
-    private Workbook makeWorkbook(CellStyle cellStyle) {
-        Workbook workbook = new XSSFWorkbook();
-        makeSheet(workbook, cellStyle);
-        return workbook;
+    public CellStyle cellStyle() {
+        return workbook.createCellStyle();
+    }
+
+    public File excelFile(String filePath) {
+        return makeFile(filePath, workbook);
     }
 
     private void makeSheet(Workbook workbook) {
         Sheet sheet = workbook.createSheet();
         for (int i = 0; i < dataset.size(); i++) {
             dataset.get(i).makeExcelRow(sheet.createRow(i));
-        }
-    }
-
-    private void makeSheet(Workbook workbook, CellStyle cellStyle) {
-        Sheet sheet = workbook.createSheet();
-        for (int i = 0; i < dataset.size(); i++) {
-            dataset.get(i).makeExcelRow(sheet.createRow(i), cellStyle);
         }
     }
 
@@ -66,5 +52,9 @@ public class WriteExcel {
             throw new RuntimeException(e);
         }
         return excelFile;
+    }
+
+    public void changeStyleOfRow(CellStyle cellStyle, int rowIndex) {
+        dataset.get(rowIndex).changeCellStyle(workbook.getSheetAt(0).getRow(rowIndex), cellStyle);
     }
 }

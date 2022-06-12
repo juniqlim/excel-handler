@@ -16,15 +16,10 @@ public class Fields {
         }
     }
 
-    public void makeExcelRow(Row row, CellStyle cellStyle) {
+    public void changeCellStyle(Row row, CellStyle cellStyle) {
         for (int i = 0; i < fields.size(); i++) {
-            setCell(row.createCell(i), fields.get(i), cellStyle);
+            row.getCell(i).setCellStyle(cellStyle);
         }
-    }
-
-    private void setCell(Cell cell, String field, CellStyle cellStyle) {
-        setCell(cell, field);
-        cell.setCellStyle(cellStyle);
     }
 
     private void setCell(Cell cell, String field) {
