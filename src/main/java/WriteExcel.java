@@ -3,35 +3,51 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
-import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class WriteExcel {
-    private final List<List<String>> dataset;
+    private final List<Fields> dataset;
 
-    public WriteExcel(List<List<String>> dataset) {
+    public WriteExcel(List<Fields> dataset) {
         this.dataset = dataset;
     }
 
-    public File file(String filePath) {
+    public File excelFile(String filePath) {
         Workbook workbook = makeWorkbook();
+        return makeFile(filePath, workbook);
+    }
+
+    public File excelFile(String filePath, CellStyle cellStyle) {
+        Workbook workbook = makeWorkbook(cellStyle);
         return makeFile(filePath, workbook);
     }
 
     private Workbook makeWorkbook() {
         Workbook workbook = new XSSFWorkbook();
-        Sheet sheet = workbook.createSheet();
-        for (int i = 0; i < dataset.size(); i++) {
-            makeRows(dataset.get(i), sheet.createRow(i));
-        }
+        makeSheet(workbook);
         return workbook;
     }
 
-    private void makeRows(List<String> row, Row sheetRow) {
-        for (int j = 0; j < row.size(); j++) {
-            sheetRow.createCell(j).setCellValue(row.get(j));
+    private Workbook makeWorkbook(CellStyle cellStyle) {
+        Workbook workbook = new XSSFWorkbook();
+        makeSheet(workbook, cellStyle);
+        return workbook;
+    }
+
+    private void makeSheet(Workbook workbook) {
+        Sheet sheet = workbook.createSheet();
+        for (int i = 0; i < dataset.size(); i++) {
+            dataset.get(i).makeExcelRow(sheet.createRow(i));
+        }
+    }
+
+    private void makeSheet(Workbook workbook, CellStyle cellStyle) {
+        Sheet sheet = workbook.createSheet();
+        for (int i = 0; i < dataset.size(); i++) {
+            dataset.get(i).makeExcelRow(sheet.createRow(i), cellStyle);
         }
     }
 
