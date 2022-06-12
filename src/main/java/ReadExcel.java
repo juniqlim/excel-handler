@@ -9,14 +9,14 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class Excel {
+public class ReadExcel {
     private final Workbook workbook;
 
-    public Excel(File file) {
+    public ReadExcel(File file) {
         this(workbook(file));
     }
 
-    public Excel(Workbook workbook) {
+    public ReadExcel(Workbook workbook) {
         this.workbook = workbook;
     }
 
