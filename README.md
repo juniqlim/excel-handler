@@ -24,3 +24,4 @@ WriteExcel writeExcel = new WriteExcel(dataset);
 writeExcel.makeWorkbook();
 File file = writeExcel.excelFile("src/test/resources/write1.xlsx"); 
 ```
+자세한 사용법은 [ReadExcelTest](https://github.com/juniqlim/excel-handler/blob/master/src/test/java/ReadExcelTest.java), [WriteExcelTest](https://github.com/juniqlim/excel-handler/blob/master/src/test/java/WriteExcelTest.java) 클래스 참조.
