@@ -3,14 +3,14 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
 
-public class Fields {
+public class ExcelRow {
     private final List<String> fields;
 
-    public Fields(List<String> fields) {
+    public ExcelRow(List<String> fields) {
         this.fields = fields;
     }
 
-    public void makeExcelRow(Row row) {
+    public void row(Row row) {
         for (int i = 0; i < fields.size(); i++) {
             setCell(row.createCell(i), fields.get(i));
         }

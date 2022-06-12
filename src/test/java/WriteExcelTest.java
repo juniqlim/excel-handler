@@ -16,10 +16,10 @@ import org.junit.jupiter.api.Test;
 class WriteExcelTest {
     @Test
     void 엑셀파일_생성() {
-        List<Fields> dataset = Arrays.asList(
-            new Fields(Arrays.asList("이름", "닉네임", "이메일", "전화번호", "등록일시")),
-            new Fields(Arrays.asList("임준규", "juniq", "juniqlim@gmail.com", "01012345678", "2022/06/12 16:59:07")),
-            new Fields(Arrays.asList("전민경", "minkee", "minkeejeon@gmail.com", "01087654321", "2022/06/12 16:59:45"))
+        List<ExcelRow> dataset = Arrays.asList(
+            new ExcelRow(Arrays.asList("이름", "닉네임", "이메일", "전화번호", "등록일시")),
+            new ExcelRow(Arrays.asList("임준규", "juniq", "juniqlim@gmail.com", "01012345678", "2022/06/12 16:59:07")),
+            new ExcelRow(Arrays.asList("전민경", "minkee", "minkeejeon@gmail.com", "01087654321", "2022/06/12 16:59:45"))
         );
 
         WriteExcel writeExcel = new WriteExcel(dataset);
@@ -30,10 +30,10 @@ class WriteExcelTest {
 
     @Test
     void 액샐파일_생성_with_셀스타일() {
-        List<Fields> dataset = Arrays.asList(
-            new Fields(Arrays.asList("이름", "닉네임", "이메일", "전화번호", "등록일시")),
-            new Fields(Arrays.asList("임준규", "juniq", "juniqlim@gmail.com", "01012345678", "2022/06/12 16:59:07")),
-            new Fields(Arrays.asList("전민경", "minkee", "minkeejeon@gmail.com", "01087654321", "2022/06/12 16:59:45"))
+        List<ExcelRow> dataset = Arrays.asList(
+            new ExcelRow(Arrays.asList("이름", "닉네임", "이메일", "전화번호", "등록일시")),
+            new ExcelRow(Arrays.asList("임준규", "juniq", "juniqlim@gmail.com", "01012345678", "2022/06/12 16:59:07")),
+            new ExcelRow(Arrays.asList("전민경", "minkee", "minkeejeon@gmail.com", "01087654321", "2022/06/12 16:59:45"))
         );
 
         WriteExcel writeExcel = new WriteExcel(dataset);

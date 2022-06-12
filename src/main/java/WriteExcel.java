@@ -9,10 +9,10 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class WriteExcel {
-    private final List<Fields> dataset;
+    private final List<ExcelRow> dataset;
     private Workbook workbook;
 
-    public WriteExcel(List<Fields> dataset) {
+    public WriteExcel(List<ExcelRow> dataset) {
         this.dataset = dataset;
     }
 
@@ -33,7 +33,7 @@ public class WriteExcel {
     private void makeSheet(Workbook workbook) {
         Sheet sheet = workbook.createSheet();
         for (int i = 0; i < dataset.size(); i++) {
-            dataset.get(i).makeExcelRow(sheet.createRow(i));
+            dataset.get(i).row(sheet.createRow(i));
         }
     }
 
