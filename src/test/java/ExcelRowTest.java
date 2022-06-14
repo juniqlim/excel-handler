@@ -13,6 +13,6 @@ class ExcelRowTest {
         XSSFWorkbook workbook = new XSSFWorkbook();
         Row row = workbook.createSheet().createRow(0);
 
-        assertThatCode(() -> excelRow.row(row)).doesNotThrowAnyException();
+        assertThatCode(() -> excelRow.makeRow(row)).doesNotThrowAnyException();
     }
 }

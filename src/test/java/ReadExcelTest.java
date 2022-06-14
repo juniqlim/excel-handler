@@ -15,7 +15,7 @@ class ReadExcelTest {
 
     @Test
     void 엑셀파일을_데이터셋으로_변환() {
-        File file = Paths.get("src/test/resources/sample1.xlsx").toFile();
+        File file = Paths.get("src/test/resources/wallet_charge_NPE.xlsx").toFile();
         ReadExcel readExcel = new ReadExcel(file);
         List<List<String>> dataset = readExcel.dataset();
 

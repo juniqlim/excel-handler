@@ -34,7 +34,7 @@ public class WriteExcel {
     private void makeSheet(Workbook workbook) {
         Sheet sheet = workbook.createSheet();
         for (int i = 0; i < dataset.size(); i++) {
-            dataset.get(i).row(sheet.createRow(i));
+            dataset.get(i).makeRow(sheet.createRow(i));
         }
     }
 

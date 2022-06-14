@@ -10,7 +10,7 @@ public class WriteExcelRow {
         this.fields = fields;
     }
 
-    public void row(Row row) {
+    public void makeRow(Row row) {
         for (int i = 0; i < fields.size(); i++) {
             setCell(row.createCell(i), fields.get(i));
         }

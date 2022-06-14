@@ -16,10 +16,10 @@ public class ReadExcelRow {
         this.cellSize = cellSize;
     }
 
-    public List<String> makeFields() {
+    public List<String> fields() {
         List<String> fields = new ArrayList<>();
         for (int j = 0; j < cellSize(); j++) {
-            fields.add(makeField(row.getCell(j)));
+            fields.add(field(row.getCell(j)));
         }
         return fields;
     }
@@ -32,7 +32,7 @@ public class ReadExcelRow {
         }
     }
 
-    private String makeField(Cell cell) {
+    private String field(Cell cell) {
         if (cell == null) {
             return "";
         }
