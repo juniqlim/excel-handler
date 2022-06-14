@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -12,8 +13,8 @@ public class WriteExcel {
     private final List<ExcelRow> dataset;
     private Workbook workbook;
 
-    public WriteExcel(List<ExcelRow> dataset) {
-        this.dataset = dataset;
+    public WriteExcel(List<List<String>> dataset) {
+        this.dataset = dataset.stream().map(ExcelRow::new).collect(Collectors.toList());
     }
 
     public void makeWorkbook() {
