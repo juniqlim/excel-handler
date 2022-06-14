@@ -3,10 +3,10 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
 
-public class ExcelRow {
+public class WriteExcelRow {
     private final List<String> fields;
 
-    public ExcelRow(List<String> fields) {
+    public WriteExcelRow(List<String> fields) {
         this.fields = fields;
     }
 

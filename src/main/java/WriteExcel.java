@@ -10,11 +10,11 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class WriteExcel {
-    private final List<ExcelRow> dataset;
+    private final List<WriteExcelRow> dataset;
     private Workbook workbook;
 
     public WriteExcel(List<List<String>> dataset) {
-        this.dataset = dataset.stream().map(ExcelRow::new).collect(Collectors.toList());
+        this.dataset = dataset.stream().map(WriteExcelRow::new).collect(Collectors.toList());
     }
 
     public void makeWorkbook() {
